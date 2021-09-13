@@ -15,7 +15,9 @@
       </ul>
     </div>
     <div class="search">
-
+        <el-input placeholder="请输入搜索内容" v-model="search">
+              <el-button slot="append" icon="el-icon-search" @click="searchClick"></el-button>
+        </el-input>
     </div>
   </div>
 
@@ -41,19 +43,28 @@ export default {
           menus:["首 页","全部商品","关于我们"],
              // 顶栏容器
             // tabs:'/home'
-          currentindex:"0"
+          currentindex:"0",
+          search:'',
         }
     },
     methods:{
+      // 搜索
+      searchClick(){
+          if (this.search != "") {
+            // 跳转到全部商品页面,并传递搜索条件
+            this.$router.push({ path: "/Goods", query: { search: this.search } });
+            this.search = "";
+          }
+      },
       click(index){
         console.log(index);
         this.currentindex = index
         switch(this.currentindex){
           case 1:
-              this.$router.push("/goods")
+              this.$router.push("/Goods")
               break;
           case 2:
-              this.$router.push("/detail")
+              this.$router.push("/About")
               break;
           default:
               this.$router.push("/home")
@@ -99,7 +110,6 @@ export default {
   float: right;
   width: 300px;
   height: 50px;
-  background-color: rgb(131, 125, 125);
   display: inline-block;
 }
 .active{

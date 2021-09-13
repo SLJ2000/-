@@ -16,23 +16,25 @@
                 <div class="right-content" v-for="item,index in list" :key="index">
                     <router-link :to="{ path: '/detail', query: {productID:item.product_id} }">
 
-                   <div  v-if="index !=7" class="right-content-style">
-                        <img width="180px" :src="$target + item.product_picture" alt="">
-                        <p style="margin-top:10px">{{item.product_name}}</p>
-                        <p style="color: rgb(167, 166, 166);">{{item.product_title}}</p>
-                        <div class="text">
-                            <span class="span">{{item.product_selling_price}}元 </span>
-                            <span style="text-decoration: line-through;color: rgb(167, 166, 166);"> {{item.product_price}}元</span>
+                        <div class="right-content-style">
+                                <img width="180px" :src="$target + item.product_picture" alt="">
+                                <p style="margin-top:10px">{{item.product_name}}</p>
+                                <p style="color: rgb(167, 166, 166);">{{item.product_title}}</p>
+                                <div class="text">
+                                    <span class="span">{{item.product_selling_price}}元 </span>
+                                    <span style="text-decoration: line-through;color: rgb(167, 166, 166);"> {{item.product_price}}元</span>
+                            </div>
                         </div>
-                        
-                    </div>
-                    <div class="eight" v-else>
-                        <span style="line-height: 312px;">浏览更多》</span>
-                    </div>
-                </router-link>
-
+                    </router-link>
                 </div>
 
+                <router-link :to="{ path: '/Goods', query: {categoryID:categoryID} }">
+                    <div v-if="currentindex" class="right-content">
+                        <div class="eight">
+                            <span style="line-height: 312px;">浏览更多》</span>
+                        </div>
+                    </div>
+                </router-link>
             </div>
         <!-- </div>
     </div> -->
@@ -42,10 +44,31 @@ export default {
     name:'Mylist',
     data(){
         return{
+            abd:0
         }
     },
-    props:["list"],
-
+    props:{
+        currentindex:{
+            type:Boolean,
+            default:false
+        },
+        list:""
+    },
+     computed: {
+        // 通过list获取当前显示的商品的分类ID，用于“浏览更多”链接的参数
+        categoryID: function() {
+        let categoryID = [];
+        if (this.list != "") {
+            for (let i = 0; i < this.list.length; i++) {
+                const id = this.list[i].category_id;
+                if (!categoryID.includes(id)) {
+                    categoryID.push(id);
+                }
+            }
+        }
+        return categoryID;
+        }
+    },
 }
 </script>
 <style scoped>
@@ -62,6 +85,7 @@ export default {
     flex-wrap:wrap;
 }
 .right-content{
+    margin-top: 10px;
     width: 260px;
     text-align: center;
 }

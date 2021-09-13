@@ -17,7 +17,7 @@
             <div class="left">
                 <img width="250" height="637px" :src="$target +'public/imgs/phone/phone.png'" />
             </div>
-            <Mylist :list="phoneList"></Mylist>
+            <Mylist :currentindex="true" :list="phoneList"></Mylist>
             
         </div>
     </div>
@@ -27,7 +27,6 @@
         <div style="text-align: justify" class="title">
             <span>家电</span>
             <ul>
-                <!-- @mouseover="hover2" -->
                 <li  @mouseover="hover1"><span :class="{'active':jiadianisshow == true}">热门</span></li>
                 <li  @mouseover="hover2"><span :class="{'active':jiadianisshow == false}">电视影音</span></li>
             </ul>
@@ -41,8 +40,8 @@
                     <img width="250" height="312px" :src="$target +'public/imgs/appliance/appliance-promo2.png'" />
                 </div>
             </div>
-            <Mylist v-show="jiadianisshow" :list="applianceList" ></Mylist>
-            <Mylist v-show="!jiadianisshow" :list="miTvList" ></Mylist>
+            <Mylist v-show="jiadianisshow" :currentindex="true" :list="applianceList" ></Mylist>
+            <Mylist v-show="!jiadianisshow" :currentindex="true" :list="miTvList" ></Mylist>
             
         </div>
     </div>
@@ -67,9 +66,9 @@
                     <img width="250" height="312px" :src="$target +'public/imgs/accessory/accessory-promo2.png'" />
                 </div>
             </div>
-            <Mylist v-show="list == 1" :list="accessoryList" ></Mylist>
-            <Mylist v-show="list == 2" :list="protectingShellList" ></Mylist>
-            <Mylist v-show="list == 3" :list="chargerList" ></Mylist>
+            <Mylist v-show="list == 1" :currentindex="true" :list="accessoryList" ></Mylist>
+            <Mylist v-show="list == 2" :currentindex="true" :list="protectingShellList" ></Mylist>
+            <Mylist v-show="list == 3" :currentindex="true" :list="chargerList" ></Mylist>
         </div>
     </div>
 </div>
@@ -131,7 +130,6 @@ export default {
             api = api != undefined ? api : "/api/product/getPromoProduct";
             this.$axios.post(api, {categoryName}).then(res => {
             this[val] = res.data.Product;
-            this[val].push("浏览更多")
 
             console.log(this[val]);
         }).catch(err => {
@@ -214,6 +212,7 @@ export default {
     background-color: #fff;
     height: 312px;
     width: 250px;
+    margin-top: 10px;
     /* border: 5px solid rgb(243, 243, 243);; */
 }
 

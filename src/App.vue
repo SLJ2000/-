@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="github">
-            <a href="https://github.com/hai-27/vue-store" target="_blank">
+            <a href="https://github.com/SLJ2000/-.git" target="_blank">
               <div class="github-but"></div>
             </a>
           </div>
@@ -32,9 +32,9 @@
             <p>
               <router-link to="/home">首页</router-link>
               <span>|</span>
-              <router-link to="/home">全部商品</router-link>
+              <router-link to="/Goods">全部商品</router-link>
               <span>|</span>
-              <router-link to="/home">关于我们</router-link>
+              <router-link to="/About">关于我们</router-link>
             </p>
             <p class="coty">商城版权所有 &copy; 2012-2021</p>
           </div>

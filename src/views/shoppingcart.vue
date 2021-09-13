@@ -78,7 +78,7 @@
                 <div style="flex:2;text-align:right">
                     <span style="color:coral;font-size:22px">总价：{{getTotalPrice}}元</span>
                 </div>
-                <router-link :to="getCheckNum > 0 ? '/home' :''">
+                <router-link :to="getCheckNum > 0 ? '/ConfirmOrder' :''">
                     <div :class="getCheckNum > 0 ? 'btn-primary' : 'btn'">
                         <span style="line-height:60px">结算</span>
                     </div>

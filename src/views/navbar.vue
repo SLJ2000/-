@@ -8,8 +8,12 @@
           购物车 {{getNum}}
           </li>
           </router-link>
-        <li>我的收藏</li>
-        <li>我的订单</li>
+          <router-link  to="/Collect">
+            <li>我的收藏</li>
+          </router-link>
+        <router-link  to="/Order">
+          <li>我的订单</li>
+        </router-link>
         <div v-if="!this.$store.state.user">
           <li @click="register = true">注册</li>
           <li>/</li>
